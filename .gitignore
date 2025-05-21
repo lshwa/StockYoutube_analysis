@@ -1,0 +1,8 @@
+# 감성 분석 관련 민감 파일 무시
+
+# 유튜브 자막 텍스트
+youtube_texts/*.txt
+
+# KOSELF 감성 사전 파일
+data/KOSELF_positive.csv
+data/KOSELF_negative.csv
