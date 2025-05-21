@@ -24,13 +24,13 @@ def calculate_opn_verbose(text, pos_words, neg_words):
     neg_count = len(matched_neg)
 
     # 디버깅 출력
-    print("✅ 감성 디버깅 결과")
+    print(" 감성 디버깅 결과")
     print(f"총 단어 수: {total}")
     print(f"POS 매칭 단어 수: {pos_count} | 단어들: {Counter(matched_pos)}")
     print(f"NEG 매칭 단어 수: {neg_count} | 단어들: {Counter(matched_neg)}")
 
     opn = round((pos_count - neg_count) / total if total > 0 else 0.0, 4)
-    print(f"\n🎯 OPN 계산식: ({pos_count} - {neg_count}) / {total} = {opn}")
+    print(f"\n OPN 계산식: ({pos_count} - {neg_count}) / {total} = {opn}")
     return opn
 
 # 4. 실행
