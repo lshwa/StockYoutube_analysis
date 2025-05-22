@@ -4,7 +4,7 @@ import os
 from datetime import datetime, timedelta
 
 # 사용자 설정
-API_KEY = "AIzaSyD_ePZoQbnywGpCYCuP_winU51pL4p6cic"
+API_KEY = "Your_API_KEY"
 USERNAME = "hkwowtv"
 MAX_RESULTS = 50
 
