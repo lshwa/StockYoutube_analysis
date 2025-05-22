@@ -1,8 +1,31 @@
-# 감성 분석 관련 민감 파일 무시
+#  감성 분석 관련 민감 파일 무시
 
 # 유튜브 자막 텍스트
-youtube_texts/*.txt
+youtube_texts/
+transcripts/
 
-# KOSELF 감성 사전 파일
+# KOSELF 감성 사전
 data/KOSELF_positive.csv
 data/KOSELF_negative.csv
+data/KOSELF1_negative.csv
+data/KOSELF2_positive.csv
+
+#  민감 데이터 파일 무시
+data/daily_opn.csv
+data/kospi.csv
+data/hkwowtv_videos.csv
+results/
+*.csv
+
+# 파이썬 환경 무시
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# 환경 설정 파일 제외
+pyvenv.cfg
+
+# IDE 관련 파일 (선택적)
+.vscode/
+.idea/
