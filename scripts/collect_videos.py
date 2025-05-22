@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # 발급받은 유효한 API 키
-API_KEY = "AIzaSyCWM4vVPVWoWcbiqk_qU9JLdkAI8NAkqfg"
+API_KEY = "YOUR_API_KEY"
 
 # 분석 대상 재생목록 ID
 PLAYLIST_IDS = [
