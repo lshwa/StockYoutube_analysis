@@ -3,21 +3,22 @@ import pandas as pd
 import os
 from datetime import datetime
 
-# 발급받은 유효한 API 키
+# 🔑 발급받은 유효한 API 키
 API_KEY = "YOUR_API_KEY"
 
-# 분석 대상 재생목록 ID
+# 🎯 분석 대상 재생목록 ID 리스트
 PLAYLIST_IDS = [
     "PLFJr7n9VNSFhJbk-vsVOBspiW2XNg3dNc",
     "PLFJr7n9VNSFjCCdlR5-Gq-yJmATQ_0NeG",
     "PLFJr7n9VNSFhYGhedWE9wGPq1AUUuwuYD"
 ]
 
-# 설정
+# 📅 수집할 날짜 범위
 MAX_RESULTS = 50
 START_DATE = datetime(2025, 1, 1)
 END_DATE = datetime(2025, 5, 31)
 
+# 🎥 재생목록에서 기간 내 영상을 수집하는 함수
 def get_video_list_in_range(playlist_id):
     videos = []
     next_page_token = None
@@ -30,9 +31,8 @@ def get_video_list_in_range(playlist_id):
             url += f"&pageToken={next_page_token}"
         response = requests.get(url).json()
 
-        # API 오류 처리
         if "error" in response:
-            print("API 오류:", response["error"])
+            print("❌ API 오류:", response["error"])
             break
 
         items = response.get('items', [])
@@ -46,7 +46,6 @@ def get_video_list_in_range(playlist_id):
             published_at = snippet['publishedAt'][:10]  # YYYY-MM-DD
             pub_date = datetime.strptime(published_at, "%Y-%m-%d")
 
-            # 날짜 필터
             if START_DATE <= pub_date <= END_DATE:
                 print(f"✅ 수집됨: {published_at} - {title}")
                 videos.append({
@@ -62,17 +61,21 @@ def get_video_list_in_range(playlist_id):
 
     return videos
 
-# 실행
+# 🚀 실행
 if __name__ == "__main__":
-    all_videos = []
-    for pid in PLAYLIST_IDS:
-        all_videos.extend(get_video_list_in_range(pid))
+    try:
+        all_videos = []
+        for pid in PLAYLIST_IDS:
+            all_videos.extend(get_video_list_in_range(pid))
 
-    df = pd.DataFrame(all_videos)
+        df = pd.DataFrame(all_videos)
 
-    #  결과 폴더 생성
-    os.makedirs("results", exist_ok=True)
+        # 📁 결과 폴더 생성
+        os.makedirs("results", exist_ok=True)
 
-    #  CSV 저장
-    df.to_csv("results/lucky_tv_videos_2025.csv", index=False, encoding='utf-8-sig')
-    print(f"\n🎉 총 {len(df)}개 영상 수집 완료! → results/lucky_tv_videos_2025.csv")
+        # 💾 CSV 저장
+        df.to_csv("results/lucky_tv_videos_2025.csv", index=False, encoding='utf-8-sig')
+        print(f"\n🎉 총 {len(df)}개 영상 수집 완료! → results/lucky_tv_videos_2025.csv")
+
+    except Exception as e:
+        print("❗ 오류 발생:", e)
